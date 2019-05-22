@@ -5,6 +5,7 @@ from blogging.models import Post, Category
 
 class CategoryInline(admin.TabularInline):
     model = Category.posts.through
+    extra = 1
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
