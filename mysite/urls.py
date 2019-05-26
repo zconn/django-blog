@@ -24,11 +24,11 @@ router.register('post', PostViewSet)
 router.register('Category', CategoryViewSet)
 
 urlpatterns = [
-    # path('', include('blogging.urls')),
+    path('', include('blogging.urls')),
     path('admin/', admin.site.urls),
     path('login/', LoginView.as_view(template_name='login.html'), name="login"),
     path('logout/', LogoutView.as_view(next_page='/'), name="logout"),
     path('accounts/', include('allauth.urls')),
-    path('', include(router.urls)),
+    path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
