@@ -17,11 +17,13 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from django.contrib.auth.views import LoginView, LogoutView
-from blogging.views import PostViewSet, CategoryViewSet
+from blogging.views import PostViewSet, CategoryViewSet, UserViewSet, GroupViewSet
 
 router = routers.DefaultRouter()
 router.register('post', PostViewSet)
 router.register('Category', CategoryViewSet)
+router.register(r'users', UserViewSet)
+router.register(r'groups', GroupViewSet)
 
 urlpatterns = [
     path('', include('blogging.urls')),

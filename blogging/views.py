@@ -3,7 +3,8 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.template import loader
 from rest_framework import viewsets
 from blogging.models import Post, Category
-from blogging.serializers import PostSerializer, CategorySerializer
+from django.contrib.auth.models import User, Group
+from blogging.serializers import PostSerializer, CategorySerializer, UserSerializer, GroupSerializer
 
 def stub_view(request, *args, **kwargs):
     body = "Stub View\n\n"
@@ -39,3 +40,11 @@ class PostViewSet(viewsets.ModelViewSet):
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all().order_by('name')
     serializer_class = CategorySerializer
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all().order_by("-date_joined")
+    serializer_class = UserSerializer
+
+class GroupViewSet(viewsets.ModelViewSet):
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer
